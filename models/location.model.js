@@ -1,9 +1,12 @@
 module.exports = (sequelize, Sequelize) => {
     const Location = sequelize.define("location", {
-        lonlat: {
+        latlong: {
             type: Sequelize.STRING
         },
         accuracy: {
+            type: Sequelize.INTEGER
+        },
+        weight: {
             type: Sequelize.INTEGER
         }
     });

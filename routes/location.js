@@ -1,6 +1,7 @@
 // import express and create router
 const express = require('express');
 const router = express.Router();
+let db = require('../db');
 
 // location route 
 router.get('/', (req, res) => {
@@ -8,16 +9,17 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    console.log(req.body)
-    console.log(req.query)
-
     let location = {
-        lonlat: req.query.lonlat,
+        latlong: req.query.latlong,
         accuracy: Number(req.query.accuracy)
     }
-    req.db.models.location.create({
-        lonlat: location.lonlat,
+
+    console.log(location);
+
+    db.models.location.create({
+        latlong: location.latlong,
         accuracy: location.accuracy,
+        userId: 1
     }).then((location) => {
         res.send(location);
     });

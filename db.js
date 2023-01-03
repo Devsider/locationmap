@@ -29,7 +29,7 @@ db.sequelize = sequelize;
 
 db.sequelize.authenticate().then(() => {
     console.log('Connection has been established successfully.');
-
+    //{ force: true }
     db.sequelize.sync().then(() => {
         console.log('Database & tables created!');
     });
@@ -37,13 +37,19 @@ db.sequelize.authenticate().then(() => {
     console.error('Unable to connect to the database: ', error);
 });
 
-db.models.location.create({
-    lonlat: '123,456',
-    accuracy: 10,
-    creator: {
-        username: "test"
-    }
-})
+// db.models.location.create({
+//     latlong: '123,456',
+//     accuracy: 10,
+//     creator: {
+//         username: "test"
+//     }
+// })
+
+// db.models.user.create({
+//     username: "test",
+//     email: "dawt@te.de",
+//     password: "123"
+// });
 
 // Export sequelize for use in other files
 module.exports = db;

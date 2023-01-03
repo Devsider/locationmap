@@ -10,18 +10,12 @@ require('dotenv').config();
 // Routes
 let routes = {
     location: require('./routes/location'),
-    // default: require('./routes/default')
+    default: require('./routes/default')
 }
 
 // Configure routes
 app.use('/location', routes.location);
-// app.use('/', routes.default);
-
-// pass db into req
-app.use((req, res, next) => {
-    req.db = db;
-    next();
-});
+app.use('/', routes.default);
 
 // Configure bodyparser to handle post requests
 app.use(bodyParser.urlencoded({
