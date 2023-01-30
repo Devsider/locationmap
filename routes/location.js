@@ -8,20 +8,43 @@ router.get('/', (req, res) => {
     res.send('location route');
 });
 
-router.post('/', (req, res) => {
+router.get('/add', (req, res) => {
     let location = {
-        latlong: req.query.latlong,
+        lat: req.query.lat,
+        lon: req.query.lon,
         accuracy: Number(req.query.accuracy)
+    }
+
+    // Check easy auth
+    if(req.query.auth != "hehe123") {
+        console.log("Wrong auth")
+        res.send("Wrong auth");
+        return;
+    }
+
+    if(
+        !location.accuracy ||
+        !location.lat ||
+        !location.lon
+    ) {
+        console.log("Missing data")
+        res.send("Missing data");
+        return;
     }
 
     console.log(location);
 
     db.models.location.create({
-        latlong: location.latlong,
+        lat: location.lat,
+        lon: location.lon,
         accuracy: location.accuracy,
+        weight: 1,
         userId: 1
     }).then((location) => {
         res.send(location);
+    }).catch((error) => {
+        res.send(error);
+        throw error;
     });
 });
 

@@ -2,7 +2,7 @@ let express = require('express');
 let app = express();
 let bodyParser = require('body-parser');
 
-// Database 
+// Database     
 let db = require('./db');
 
 require('dotenv').config();

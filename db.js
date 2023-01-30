@@ -21,8 +21,8 @@ db.models = {
 }
 
 // Create associations
-db.models.location.belongsTo(db.models.user);
-db.models.user.hasMany(db.models.location);
+// db.models.location.belongsTo(db.models.user);
+// db.models.user.hasMany(db.models.location);
 
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
